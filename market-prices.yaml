@@ -107,6 +107,8 @@ paths:
   /schedules:
     get:
       summary: Retrieve a list of schedules for which pricing data is currently available
+      tags:
+        - MarketPrices
       responses:
         "200":
           $ref: '#/components/responses/listSchedulesResponse'
@@ -139,6 +141,8 @@ paths:
       - $ref: '#/components/parameters/offset'
     get:
       summary: Retrieve a list of prices for the given schedule
+      tags:
+        - MarketPrices
       responses:
         "200":
           $ref: '#/components/responses/getSchedulePricesResponse'
@@ -158,6 +162,8 @@ paths:
   /nodes:
     get:
       summary: Retrieve a list of GXP/GIP supported by this API
+      tags:
+        - MarketPrices
       responses:
         "200":
           $ref: '#/components/responses/listNodesResponse'
@@ -175,6 +181,8 @@ paths:
   /prices:
     get:
       summary: Retrieve a list of prices across schedules
+      tags:
+        - MarketPrices
       parameters:
         - $ref: '#/components/parameters/schedules'
         - $ref: '#/components/parameters/marketType'
