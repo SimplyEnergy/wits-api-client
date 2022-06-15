@@ -1,0 +1,53 @@
+.DS_Store
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+/out/
+out
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+key.asc
+my.keystore
+
+
+cloud/letsencrypt
+cloud/log
+logs
+
+
+# https://github.com/yarnpkg/berry/issues/454
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
+# subdir for yarn
+**/.yarn/*
+!**/.yarn/releases
+!**/.yarn/plugins
+**/.pnp.*
+
+
+.kotlin
+
+*.bak
