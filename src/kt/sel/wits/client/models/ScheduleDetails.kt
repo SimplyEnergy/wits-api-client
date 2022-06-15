@@ -20,40 +20,24 @@
 
 package sel.wits.client.models
 
+import sel.wits.client.models.PriceDetails
 
 import com.squareup.moshi.Json
 
 /**
- * Standard fault model
+ * 
  *
- * @param status The HTTP Status code of the response
- * @param code Application specific error code
- * @param message Basic error message
- * @param timestamp Server timestamp of failure
- * @param detail Extended error details
+ * @param schedule 
+ * @param prices 
  */
 
-data class Fault (
+data class ScheduleDetails (
 
-    /* The HTTP Status code of the response */
-    @Json(name = "status")
-    val status: kotlin.Int,
+    @Json(name = "schedule")
+    val schedule: kotlin.String,
 
-    /* Application specific error code */
-    @Json(name = "code")
-    val code: kotlin.String,
-
-    /* Basic error message */
-    @Json(name = "message")
-    val message: kotlin.String,
-
-    /* Server timestamp of failure */
-    @Json(name = "timestamp")
-    val timestamp: kotlin.String,
-
-    /* Extended error details */
-    @Json(name = "detail")
-    val detail: kotlin.String? = null
+    @Json(name = "prices")
+    val prices: kotlin.collections.List<PriceDetails>
 
 )
 

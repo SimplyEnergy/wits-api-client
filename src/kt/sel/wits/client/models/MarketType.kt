@@ -24,36 +24,43 @@ package sel.wits.client.models
 import com.squareup.moshi.Json
 
 /**
- * Standard fault model
+ * 
  *
- * @param status The HTTP Status code of the response
- * @param code Application specific error code
- * @param message Basic error message
- * @param timestamp Server timestamp of failure
- * @param detail Extended error details
+ * Values: E,R
  */
 
-data class Fault (
+enum class MarketType(val value: kotlin.String) {
 
-    /* The HTTP Status code of the response */
-    @Json(name = "status")
-    val status: kotlin.Int,
+    @Json(name = "E")
+    E("E"),
 
-    /* Application specific error code */
-    @Json(name = "code")
-    val code: kotlin.String,
+    @Json(name = "R")
+    R("R");
 
-    /* Basic error message */
-    @Json(name = "message")
-    val message: kotlin.String,
+    /**
+     * Override toString() to avoid using the enum variable name as the value, and instead use
+     * the actual value defined in the API spec file.
+     *
+     * This solves a problem when the variable name and its value are different, and ensures that
+     * the client sends the correct enum values to the server always.
+     */
+    override fun toString(): String = value
 
-    /* Server timestamp of failure */
-    @Json(name = "timestamp")
-    val timestamp: kotlin.String,
+    companion object {
+        /**
+         * Converts the provided [data] to a [String] on success, null otherwise.
+         */
+        fun encode(data: kotlin.Any?): kotlin.String? = if (data is MarketType) "$data" else null
 
-    /* Extended error details */
-    @Json(name = "detail")
-    val detail: kotlin.String? = null
-
-)
+        /**
+         * Returns a valid [MarketType] for [data], null otherwise.
+         */
+        fun decode(data: kotlin.Any?): MarketType? = data?.let {
+          val normalizedData = "$it".lowercase()
+          values().firstOrNull { value ->
+            it == value || normalizedData == "$value".lowercase()
+          }
+        }
+    }
+}
 

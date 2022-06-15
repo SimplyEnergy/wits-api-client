@@ -24,36 +24,60 @@ package sel.wits.client.models
 import com.squareup.moshi.Json
 
 /**
- * Standard fault model
+ * Price list retrieved
  *
- * @param status The HTTP Status code of the response
- * @param code Application specific error code
- * @param message Basic error message
- * @param timestamp Server timestamp of failure
- * @param detail Extended error details
+ * @param node The name of the Grid Injection Point(GIP) or Grid Exit Point (GXP). This is the first 8 characters of the Market Node ID.
+ * @param schedule 
+ * @param tradingDate 
+ * @param tradingTime 
+ * @param tradingPeriod A sequential 30-minute period starting from period 1 at midnight (00:00) and, on most days, ending at period 48 at 23:30.  The exceptions to this are on the spring and autumn daylight-time changeover days. The spring change-over day is 23 hours long (as the clock jumps forward from 2am to 3am) so only has 46 trading-periods and the autumn change-over day is 25 hours long (as the clock jumps back from 3am to 2am) and has 50 trading-periods.
+ * @param runType Sub-type of schedule
+ * @param lastRunTime Solution run-time
+ * @param price 
+ * @param price6s 
+ * @param price60s 
+ * @param reserveNode The name of the Grid Injection Point(GIP) or Grid Exit Point (GXP). This is the first 8 characters of the Market Node ID.
  */
 
-data class Fault (
+data class PriceDetails (
 
-    /* The HTTP Status code of the response */
-    @Json(name = "status")
-    val status: kotlin.Int,
+    /* The name of the Grid Injection Point(GIP) or Grid Exit Point (GXP). This is the first 8 characters of the Market Node ID. */
+    @Json(name = "node")
+    val node: kotlin.String,
 
-    /* Application specific error code */
-    @Json(name = "code")
-    val code: kotlin.String,
+    @Json(name = "schedule")
+    val schedule: kotlin.String? = null,
 
-    /* Basic error message */
-    @Json(name = "message")
-    val message: kotlin.String,
+    @Json(name = "trading_date")
+    val tradingDate: java.time.LocalDate? = null,
 
-    /* Server timestamp of failure */
-    @Json(name = "timestamp")
-    val timestamp: kotlin.String,
+    @Json(name = "trading_time")
+    val tradingTime: java.time.LocalDate? = null,
 
-    /* Extended error details */
-    @Json(name = "detail")
-    val detail: kotlin.String? = null
+    /* A sequential 30-minute period starting from period 1 at midnight (00:00) and, on most days, ending at period 48 at 23:30.  The exceptions to this are on the spring and autumn daylight-time changeover days. The spring change-over day is 23 hours long (as the clock jumps forward from 2am to 3am) so only has 46 trading-periods and the autumn change-over day is 25 hours long (as the clock jumps back from 3am to 2am) and has 50 trading-periods. */
+    @Json(name = "trading_period")
+    val tradingPeriod: kotlin.Int? = null,
+
+    /* Sub-type of schedule */
+    @Json(name = "run_type")
+    val runType: kotlin.String? = null,
+
+    /* Solution run-time */
+    @Json(name = "last_run_time")
+    val lastRunTime: kotlin.String? = null,
+
+    @Json(name = "price")
+    val price: java.math.BigDecimal? = null,
+
+    @Json(name = "price_6s")
+    val price6s: java.math.BigDecimal? = null,
+
+    @Json(name = "price_60s")
+    val price60s: java.math.BigDecimal? = null,
+
+    /* The name of the Grid Injection Point(GIP) or Grid Exit Point (GXP). This is the first 8 characters of the Market Node ID. */
+    @Json(name = "reserve_node")
+    val reserveNode: kotlin.String? = null
 
 )
 
