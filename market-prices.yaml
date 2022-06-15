@@ -205,6 +205,7 @@ components:
       description: This API uses OAuth 2 with the client credentials grant flow
       flows:
         clientCredentials:
+          scopes: {}
           tokenUrl: /login/oauth2/token
 
   parameters:
